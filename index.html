@@ -1,150 +1,35 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0b1020">
-<title>Калькулятор сна</title>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080b16"><title>Калькулятор сна</title>
 <style>
-:root{
-  --bg:#080b16;
-  --card:#11172a;
-  --card2:#171e35;
-  --text:#f5f7ff;
-  --muted:#9da7c1;
-  --accent:#9b8cff;
-  --accent2:#6dd5ed;
-  --border:rgba(255,255,255,.09);
-}
-*{box-sizing:border-box}
-body{
-  margin:0; min-height:100vh; color:var(--text);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:
-    radial-gradient(circle at 20% 0%,rgba(122,99,255,.25),transparent 35%),
-    radial-gradient(circle at 100% 20%,rgba(60,180,220,.14),transparent 30%),
-    var(--bg);
-}
-.app{max-width:620px;margin:auto;padding:24px 18px 36px}
-.header{text-align:center;padding:14px 8px 22px}
-.moon{font-size:48px;filter:drop-shadow(0 0 20px rgba(155,140,255,.35))}
-h1{font-size:30px;margin:8px 0 7px;letter-spacing:-.7px}
-.subtitle{color:var(--muted);font-size:15px;line-height:1.45}
-.card{
-  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
-  border:1px solid var(--border);border-radius:24px;padding:20px;
-  box-shadow:0 14px 45px rgba(0,0,0,.22);backdrop-filter:blur(14px);
-  margin-bottom:16px;
-}
-label{display:block;font-size:14px;color:var(--muted);margin-bottom:9px}
-.time-row{display:flex;gap:10px}
-input[type=time]{
-  width:100%;padding:15px 14px;border-radius:15px;border:1px solid var(--border);
-  background:var(--card2);color:var(--text);font-size:22px;outline:none;
-}
-button{
-  width:100%;border:0;border-radius:16px;padding:15px 18px;margin-top:14px;
-  background:linear-gradient(135deg,var(--accent),#7565e8);color:white;
-  font-size:17px;font-weight:700;cursor:pointer;
-  box-shadow:0 9px 25px rgba(122,99,255,.25);
-}
-button:active{transform:scale(.985)}
-.results{display:none}
-.result{
-  padding:16px;border:1px solid var(--border);background:rgba(255,255,255,.035);
-  border-radius:17px;margin-top:10px;display:flex;justify-content:space-between;
-  align-items:center;gap:12px;
-}
-.result .time{font-size:25px;font-weight:800;letter-spacing:-.5px}
-.result .meta{font-size:13px;color:var(--muted);text-align:right;line-height:1.35}
-.badge{
-  display:inline-block;padding:5px 9px;border-radius:999px;background:rgba(109,213,237,.1);
-  color:var(--accent2);font-size:12px;font-weight:700;margin-bottom:8px;
-}
-h2{font-size:19px;margin:0 0 12px}
-.tips{display:grid;gap:10px}
-.tip{
-  padding:13px 14px;border-radius:15px;background:rgba(255,255,255,.035);
-  border:1px solid var(--border);font-size:14px;line-height:1.45;color:#dfe4f4;
-}
-.tip b{color:#fff}
-.note{font-size:12px;line-height:1.5;color:var(--muted);margin-top:13px}
-.footer{text-align:center;color:#6f7890;font-size:11px;padding-top:4px}
-</style>
-</head>
-<body>
-<div class="app">
-  <header class="header">
-    <div class="moon">🌙</div>
-    <h1>Калькулятор сна</h1>
-    <div class="subtitle">Укажи время подъёма — получи ориентировочные окна для отхода ко сну.</div>
-  </header>
+:root{--bg:#080b16;--card:#11172a;--card2:#171e35;--text:#f6f7ff;--muted:#9da7c1;--a:#9b8cff;--b:#6dd5ed;--good:#77e0a2;--border:rgba(255,255,255,.09)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 20% 0%,rgba(122,99,255,.25),transparent 35%),radial-gradient(circle at 100% 20%,rgba(60,180,220,.14),transparent 30%),var(--bg)}.app{max-width:650px;margin:auto;padding:18px 16px 38px}.header{text-align:center;padding:10px 8px 18px}.moon{font-size:46px}h1{font-size:30px;margin:6px 0}.sub,.small,.note{color:var(--muted);font-size:13px;line-height:1.5}.card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border:1px solid var(--border);border-radius:23px;padding:18px;margin-bottom:14px;box-shadow:0 14px 45px rgba(0,0,0,.2)}h2{font-size:19px;margin:0 0 13px}.tabs,.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tab,.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--muted);border-radius:13px;padding:11px;font-weight:700}.tab.active{background:rgba(155,140,255,.18);color:#fff}.hidden{display:none}label{display:block;font-size:13px;color:var(--muted);margin:10px 0 7px}input,select{width:100%;padding:13px;border-radius:14px;border:1px solid var(--border);background:var(--card2);color:#fff;font-size:17px}button{cursor:pointer}.primary{width:100%;border:0;border-radius:15px;padding:14px;margin-top:13px;background:linear-gradient(135deg,var(--a),#7565e8);color:#fff;font-size:16px;font-weight:800}.results{display:none}.result{padding:15px;border:1px solid var(--border);background:rgba(255,255,255,.035);border-radius:17px;margin-top:9px;display:flex;justify-content:space-between;align-items:center;gap:12px}.time{font-size:25px;font-weight:850}.meta{font-size:12px;color:var(--muted);text-align:right;line-height:1.4}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(119,224,162,.1);color:var(--good);font-size:11px;font-weight:800;margin-bottom:6px}.tips{display:grid;gap:9px}.tip,details{padding:12px 13px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--border);font-size:13px;line-height:1.45}.tip b{color:#fff}details{margin-top:8px}summary{cursor:pointer;font-weight:700}details p{color:#cdd3e5}.stat{display:flex;justify-content:space-between;padding:12px;border-radius:14px;background:rgba(255,255,255,.035);margin-top:8px}.bar{height:9px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:7px}.fill{height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:99px}.diary-row{display:grid;grid-template-columns:45px 1fr 75px;gap:8px;align-items:center;margin-top:8px;font-size:12px}.diary-row input{font-size:14px;padding:8px}.diary-row button{padding:8px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff;border-radius:9px}.footer{text-align:center;color:#6f7890;font-size:11px}
+</style></head><body><div class="app">
+<header class="header"><div class="moon">🌙</div><h1>Калькулятор сна</h1><div class="sub">Рассчитай удобное время сна и следи за своим режимом.</div></header>
 
-  <section class="card">
-    <label for="wake">Во сколько нужно проснуться?</label>
-    <div class="time-row">
-      <input id="wake" type="time" value="07:00" aria-label="Время подъёма">
-    </div>
-    <button id="calc">Рассчитать время сна</button>
-  </section>
+<section class="card"><div class="tabs"><button class="tab active" id="wakeTab">⏰ Я встаю в…</button><button class="tab" id="sleepTab">🛏️ Я ложусь в…</button></div>
+<div id="wakeMode"><label>Во сколько нужно проснуться?</label><input id="wake" type="time" value="07:00"></div>
+<div id="sleepMode" class="hidden"><label>Во сколько планируешь лечь?</label><input id="bed" type="time" value="23:00"></div>
+<div class="grid"><div><label>Желаемый сон</label><select id="duration"><option value="450">7 ч 30 мин</option><option value="480" selected>8 часов</option><option value="510">8 ч 30 мин</option><option value="540">9 часов</option><option value="570">9 ч 30 мин</option></select></div><div><label>На засыпание</label><select id="fall"><option value="10">10 минут</option><option value="15" selected>15 минут</option><option value="20">20 минут</option><option value="30">30 минут</option></select></div></div>
+<button class="primary" id="calc">Рассчитать</button></section>
 
-  <section class="card results" id="results">
-    <h2>Когда лечь спать</h2>
-    <div id="resultList"></div>
-    <div class="note">
-      Расчёт использует условные циклы примерно по 90 минут и около 15 минут на засыпание.
-      Реальная длительность циклов меняется от человека к человеку и от ночи к ночи.
-    </div>
-  </section>
+<section class="card results" id="results"><h2 id="resultTitle">🌙 Когда лечь спать</h2><div id="resultList"></div><div class="note">Расчёт ориентировочный: реальные циклы сна не идут строго по 90 минут. Важнее регулярность и достаточная продолжительность сна.</div></section>
 
-  <section class="card">
-    <h2>🌿 Гигиена сна</h2>
-    <div class="tips">
-      <div class="tip">📱 <b>За 30–60 минут до сна</b> постарайся уменьшить яркий свет и отложить телефон.</div>
-      <div class="tip">☕ <b>Кофеин</b> лучше не употреблять во второй половине дня, если он мешает засыпанию.</div>
-      <div class="tip">🛏️ <b>Режим</b> — старайся ложиться и вставать примерно в одно и то же время.</div>
-      <div class="tip">🌡️ <b>Комната</b> — прохлада, тишина и темнота обычно помогают сделать сон комфортнее.</div>
-      <div class="tip">🧘 <b>Расслабление</b> — спокойная музыка, чтение или несколько минут медленного дыхания могут помочь подготовиться ко сну.</div>
-      <div class="tip">🌤️ <b>Утром</b> дневной свет после пробуждения помогает поддерживать стабильный режим сна и бодрствования.</div>
-    </div>
-  </section>
+<section class="card"><h2>🧠 Умный режим</h2><div class="grid"><div><label>Возраст</label><select id="age"><option value="teen">Подросток 13–17</option><option value="adult" selected>Взрослый 18+</option></select></div><div id="ageAdvice" class="small" style="padding-top:10px"></div></div></section>
 
-  <div class="footer">Информация носит справочный характер и не заменяет консультацию специалиста.</div>
-</div>
+<section class="card"><h2>📊 Мой сон</h2><div class="small">Запиши продолжительность сна. Данные сохраняются только на этом устройстве.</div><div id="diary"></div><div class="stat"><span>Среднее</span><b id="average">—</b></div><div class="bar"><div class="fill" id="avgBar" style="width:0%"></div></div><button class="secondary" id="clearDiary" style="width:100%;margin-top:11px">Очистить дневник</button></section>
+
+<section class="card"><h2>🌿 Гигиена сна</h2><div class="tips"><div class="tip">📱 <b>За 30–60 минут:</b> уменьши яркий свет и по возможности отложи телефон.</div><div class="tip">☕ <b>Кофеин:</b> если он мешает сну, избегай его во второй половине дня.</div><div class="tip">🛏️ <b>Режим:</b> старайся ложиться и вставать примерно в одно время.</div><div class="tip">🌡️ <b>Комната:</b> тишина, темнота и комфортная прохлада часто помогают.</div><div class="tip">🌤️ <b>Утро:</b> дневной свет после пробуждения помогает поддерживать стабильный ритм.</div></div></section>
+
+<section class="card"><h2>📚 О сне</h2><details><summary>Почему важна продолжительность сна?</summary><p>Недостаток сна может ухудшать внимание, настроение, память и самочувствие. Нужное количество зависит от возраста и индивидуальных особенностей.</p></details><details><summary>Что такое фазы сна?</summary><p>Во время ночи чередуются разные стадии сна, включая NREM и REM. Их длительность меняется, поэтому ровно 90 минут на цикл — лишь удобное приближение.</p></details><details><summary>Что делать, если трудно заснуть?</summary><p>Сделай обстановку спокойной и тёмной, убери яркий экран и попробуй расслабляющую рутину. Если проблемы регулярно мешают жизни, обсуди их со специалистом.</p></details></section>
+<div class="footer">Справочная информация, не медицинская диагностика.</div></div>
 
 <script>
-function toMinutes(t){
-  const [h,m]=t.split(':').map(Number);
-  return h*60+m;
-}
-function fmt(total){
-  total=(total+1440)%1440;
-  const h=String(Math.floor(total/60)).padStart(2,'0');
-  const m=String(total%60).padStart(2,'0');
-  return h+':'+m;
-}
-document.getElementById('calc').addEventListener('click',()=>{
-  const wake=document.getElementById('wake').value;
-  if(!wake)return;
-  const wakeMin=toMinutes(wake);
-  const list=document.getElementById('resultList');
-  list.innerHTML='';
-  // 5, 6 and 7 cycles: 7.5h, 9h and 10.5h sleep, plus ~15 min to fall asleep.
-  const options=[
-    {cycles:7, sleep:'10 ч 30 мин', desc:'7 циклов — длительный вариант'},
-    {cycles:6, sleep:'9 ч', desc:'6 циклов — около 9 часов сна'},
-    {cycles:5, sleep:'7 ч 30 мин', desc:'5 циклов — около 7,5 часов сна'}
-  ];
-  options.forEach((o,i)=>{
-    const bedtime=wakeMin-(o.cycles*90)-15;
-    const div=document.createElement('div');
-    div.className='result';
-    div.innerHTML='<div><div class="badge">'+(i===1?'Популярный вариант':'Вариант')+'</div><div class="time">'+fmt(bedtime)+'</div></div><div class="meta">'+o.sleep+'<br>'+o.desc+'</div>';
-    list.appendChild(div);
-  });
-  document.getElementById('results').style.display='block';
-  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
-});
-</script>
-</body>
-</html>
+const $=id=>document.getElementById(id);let mode='wake';
+const mins=t=>{let [h,m]=t.split(':').map(Number);return h*60+m},fmt=v=>{v=(v%1440+1440)%1440;return String(Math.floor(v/60)).padStart(2,'0')+':'+String(v%60).padStart(2,'0')},dur=m=>Math.floor(m/60)+' ч '+(m%60?m%60+' мин':'');
+function setMode(x){mode=x;$('wakeMode').classList.toggle('hidden',x!=='wake');$('sleepMode').classList.toggle('hidden',x!=='sleep');$('wakeTab').classList.toggle('active',x==='wake');$('sleepTab').classList.toggle('active',x==='sleep')}
+$('wakeTab').onclick=()=>setMode('wake');$('sleepTab').onclick=()=>setMode('sleep');
+$('calc').onclick=()=>{let d=+$('duration').value,f=+$('fall').value,list=$('resultList');list.innerHTML='';let base=mode==='wake'?mins($('wake').value):mins($('bed').value),opts=[d,d+30,d-30].filter((x,i,a)=>x>0&&a.indexOf(x)===i);opts.forEach((x,i)=>{let v=mode==='wake'?base-x-f:base+f+x,e=document.createElement('div');e.className='result';e.innerHTML='<div><div class="badge">'+(i?'Вариант':'⭐ Рекомендуемый вариант')+'</div><div class="time">'+fmt(v)+'</div></div><div class="meta">'+dur(x)+' сна<br>'+(mode==='wake'?'подъём в '+$('wake').value:'отбой в '+$('bed').value)+'</div>';list.appendChild(e)});$('resultTitle').textContent=mode==='wake'?'🌙 Когда лечь спать':'☀️ Когда проснуться';$('results').style.display='block';$('results').scrollIntoView({behavior:'smooth'})};
+function age(){ $('ageAdvice').textContent=$('age').value==='teen'?'Подросткам обычно рекомендуется около 8–10 часов сна.':'Большинству взрослых обычно рекомендуется около 7–9 часов сна.' } $('age').onchange=age;age();
+const days=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];function data(){try{return JSON.parse(localStorage.getItem('sleepDiary')||'[]')}catch(e){return[]}}function save(a){localStorage.setItem('sleepDiary',JSON.stringify(a))}
+function stats(){let a=data().filter(x=>typeof x==='number'&&x>0);if(!a.length){$('average').textContent='—';$('avgBar').style.width='0%';return}let av=a.reduce((x,y)=>x+y,0)/a.length;$('average').textContent=av.toFixed(1)+' ч';$('avgBar').style.width=Math.min(100,av/10*100)+'%'}
+function diary(){let box=$('diary');box.innerHTML='';days.forEach((day,i)=>{let r=document.createElement('div');r.className='diary-row';r.innerHTML='<b>'+day+'</b><input type="number" min="0" max="24" step=".25" placeholder="часов" value="'+(data()[i]||'')+'"><button>Сохранить</button>';r.querySelector('button').onclick=()=>{let a=data(),v=parseFloat(r.querySelector('input').value);a[i]=isFinite(v)&&v>=0&&v<=24?v:'';save(a);stats()};box.appendChild(r)});stats()}$('clearDiary').onclick=()=>{localStorage.removeItem('sleepDiary');diary()};diary();
+</script></body></html>
